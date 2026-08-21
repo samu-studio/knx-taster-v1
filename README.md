@@ -10,7 +10,9 @@ Custom 6-button KNX wall controller — designed, built, and installed in my own
 
 Off-the-shelf KNX wall controllers are functional but expensive, and rarely fit the exact button layout or feedback style I wanted. So I built my own — from schematic and PCB layout in KiCAD, through firmware on an STM32, to a fully 3D-printed enclosure and switch frame. It has been the primary KNX switch in my hallway since Summer 2026.
 
-![KNX Taster v1 installed in the hallway](docs/images/01-wall-installed.jpg)
+<p align="center">
+  <img src="docs/images/01-wall-installed.jpg" alt="KNX Taster v1 installed in the hallway" width="480">
+</p>
 
 ---
 
@@ -18,11 +20,11 @@ Off-the-shelf KNX wall controllers are functional but expensive, and rarely fit 
 
 **Own KNX protocol stack.** Rather than pulling in an off-the-shelf KNX library, the firmware implements the KNX bus stack from scratch on the STM32 — a deliberate learning project to actually understand the protocol layer by layer. ETS integration is currently being developed; migration to an established stack is on the table for v2.
 
-**6 mechanical buttons with individual RGB backlight.** Gateron Brown key switches under 3D-printed frosted white button caps for even light diffusion. Per-key colour via SK6812MINI addressable LEDs — used to indicate state, group, or feedback.
+**Reconfigurable button layout.** The same PCB accepts either 6 individual buttons or 3 large rocker-style ("Wippen") caps — mix them as needed. Both configurations use identical Gateron Brown switches; only the 3D-printed caps change. Per-key colour via SK6812MINI addressable RGB LEDs shining through frosted white PLA, with black PLA sections directing the light to the intended cap without bleed between buttons.
 
 **Modular KNX interface.** The KNX bus front-end (NCN5130-based) sits on a small daughterboard that plugs into the main PCB. This kept the bus-facing electronics isolated during development and let the coupler be revised independently — a pattern I now use whenever a design has a risky or reusable subsystem.
 
-**Integrated environmental sensors.** NTC thermistor for room temperature and a photoresistor for ambient light — both onboard, no external module required.
+**Ambient-adaptive backlight.** An onboard photoresistor measures room brightness so the RGB LEDs adjust themselves in real time — dim enough at night to not light up the room, bright enough during the day to stay visible. Room temperature is measured in parallel via an NTC thermistor and made available on the KNX bus.
 
 **Fully 3D-printed housing and wall frame.** No off-the-shelf switch frame — even the standard-format wall frame is printed, so the whole assembly is one coherent design. Standard European mounting depth, drops into any existing flush-mount box.
 
@@ -32,20 +34,30 @@ Off-the-shelf KNX wall controllers are functional but expensive, and rarely fit 
 
 ## Gallery
 
-![Front view with RGB feedback](docs/images/02-front-lit.jpg)
-*Front side under RGB feedback — buttons lit through frosted 3D-printed caps*
+<p align="center">
+  <img src="docs/images/02-front-lit.jpg" alt="Front view with RGB feedback" width="380"><br>
+  <sub><i>Front side under RGB feedback — buttons lit through frosted 3D-printed caps</i></sub>
+</p>
 
-![Side profile](docs/images/03-side-profile.jpg)
-*Enclosure depth — fits a standard European flush-mount box*
+<p align="center">
+  <img src="docs/images/03-side-profile.jpg" alt="Side profile" width="380"><br>
+  <sub><i>Enclosure depth — fits a standard European flush-mount box</i></sub>
+</p>
 
-![Main board — 3D render](docs/images/04-main-pcb-render.png)
-*Main board, KiCAD 9 3D render — MCU, buttons, sensor cluster, coupler socket*
+<p align="center">
+  <img src="docs/images/04-main-pcb-render.png" alt="Main board — 3D render" width="380"><br>
+  <sub><i>Main board, KiCAD 9 3D render — MCU, buttons, sensor cluster, coupler socket</i></sub>
+</p>
 
-![Main board with KNX Ankoppler attached](docs/images/05-main-with-ankoppler.jpg)
-*Assembled main board with the modular KNX Ankoppler plugged into its socket*
+<p align="center">
+  <img src="docs/images/05-main-with-ankoppler.jpg" alt="Main board with KNX Ankoppler attached" width="380"><br>
+  <sub><i>Assembled main board with the modular KNX Ankoppler plugged into its socket</i></sub>
+</p>
 
-![KNX Ankoppler — 3D render](docs/images/06-ankoppler-render.png)
-*KNX Ankoppler daughterboard — NCN5130 bus front-end with 8/16 MHz reference*
+<p align="center">
+  <img src="docs/images/06-ankoppler-render.png" alt="KNX Ankoppler — 3D render" width="380"><br>
+  <sub><i>KNX Ankoppler daughterboard — NCN5130 bus front-end with 8/16 MHz reference</i></sub>
+</p>
 
 ---
 
@@ -76,15 +88,15 @@ Off-the-shelf KNX wall controllers are functional but expensive, and rarely fit 
 
 ### Enclosure
 
-- 3D-printed housing in black PLA
-- 3D-printed frosted white button caps for LED diffusion
-- 3D-printed wall frame in standard European 55 mm format
+- 3D-printed housing in white PLA
+- 3D-printed button caps combining frosted white PLA (for LED diffusion) with black PLA sections (for light directing)
+- 3D-printed wall frame in 60 mm format
 
 ---
 
 ## Firmware
 
-Written in C on the STM32G070, developed in **STM32CubeIDE**. The KNX protocol stack is a custom implementation running directly on the MCU, communicating with the KNX bus through the NCN5130 coupler board. The firmware also drives the RGB LEDs, samples the two sensors, and handles button debouncing.
+Written in C++ on the STM32G070, developed in **STM32CubeIDE**. The KNX protocol stack is a custom implementation running directly on the MCU, communicating with the KNX bus through the NCN5130 coupler board. The firmware also drives the RGB LEDs, samples the two sensors, and handles button debouncing.
 
 *The firmware source is not published in this repository — this repo documents the project, it is not an open-source release.*
 
