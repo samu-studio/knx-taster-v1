@@ -20,7 +20,7 @@ Off-the-shelf KNX wall controllers are functional but expensive, and rarely fit 
 
 **Own KNX protocol stack.** Rather than pulling in an off-the-shelf KNX library, the firmware implements the KNX bus stack from scratch on the STM32 — a deliberate learning project to actually understand the protocol layer by layer. ETS integration is currently being developed; migration to an established stack is on the table for v2.
 
-**Reconfigurable button layout.** The same PCB accepts either 6 individual buttons or 3 large rocker-style ("Wippen") caps — mix them as needed. Both configurations use identical Gateron Brown switches; only the 3D-printed caps change. Per-key colour via SK6812MINI addressable RGB LEDs shining through frosted white PLA, with black PLA sections directing the light to the intended cap without bleed between buttons.
+**Reconfigurable button layout.** The PCB is split into two independent halves. Each side can be fitted with either **3 individual buttons** or **one large rocker ("Wippe")** covering all three positions — chosen per side, so you can run 6 buttons, buttons on one side + rocker on the other, or two rockers. All configurations use identical Gateron Brown switches underneath; only the 3D-printed caps change. Per-key colour via SK6812MINI addressable RGB LEDs shining through frosted white PLA, with black PLA sections directing the light to the intended cap without bleed between buttons.
 
 **Modular KNX interface.** The KNX bus front-end (NCN5130-based) sits on a small daughterboard that plugs into the main PCB. This kept the bus-facing electronics isolated during development and let the coupler be revised independently — a pattern I now use whenever a design has a risky or reusable subsystem.
 
