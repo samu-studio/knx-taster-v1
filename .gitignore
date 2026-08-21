@@ -1,0 +1,109 @@
+# ============================================
+# General
+# ============================================
+# Local helper scripts (not part of the repository)
+commit.bat
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Nextcloud / OwnCloud sync metadata
+.sync_*.db*
+._sync_*.db*
+.nextcloudsync.log
+.owncloudsync.log
+
+# ============================================
+# KiCAD
+# ============================================
+*-backups/
+*.bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.kicad_prl
+_autosave-*
+fp-info-cache
+
+# ============================================
+# Altium Designer
+# ============================================
+History/
+__Previews/
+Project Logs for*/
+*.PrjPcbStructure
+*.SchDocPreview
+*.PcbDocPreview
+
+# ============================================
+# Fusion 360
+# ============================================
+*.f3d.backup
+*.f3z.backup
+
+# ============================================
+# Firmware / C / C++ build artifacts
+# ============================================
+build/
+Build/
+Debug/
+Release/
+bin/
+obj/
+*.o
+*.obj
+*.elf
+*.hex
+*.bin
+*.map
+*.d
+*.a
+*.lib
+*.dep
+
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# ============================================
+# IDEs
+# ============================================
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ============================================
+# CMake
+# ============================================
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+# ============================================
+# Python (falls Skripte im Repo)
+# ============================================
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# ============================================
+# Large media (better hosted elsewhere or in Releases)
+# ============================================
+*.mp4
+*.mov
+*.zip
+*.tar.gz
+*.7z
